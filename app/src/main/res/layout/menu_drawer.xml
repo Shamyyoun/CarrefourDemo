@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:background="@color/primary_dark">
+
+    <views.RoundedImageView
+        android:id="@+id/image_profile"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile_pic"
+        android:layout_margin="@dimen/menu_drawer_profile_pic_margin"
+        android:layout_width="@dimen/menu_drawer_profile_pic_dimen"
+        android:layout_height="@dimen/menu_drawer_profile_pic_dimen" />
+
+    <TextView
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Mahmoud Elshamy"
+        android:id="@+id/text_name" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.balysv.materialripple.MaterialRippleLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleHover="true">
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:padding="@dimen/menu_drawer_item_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/home"
+                    android:id="@+id/text_home" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <views.ExpandableHeightListView
+                android:dividerHeight="0dp"
+                android:divider="@null"
+                android:id="@+id/list_categories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></views.ExpandableHeightListView>
+
+            <com.balysv.materialripple.MaterialRippleLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleHover="true">
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:padding="@dimen/menu_drawer_item_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/about"
+                    android:id="@+id/text_about" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleHover="true">
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:padding="@dimen/menu_drawer_item_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/logout"
+                    android:id="@+id/text_logout" />
+            </com.balysv.materialripple.MaterialRippleLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

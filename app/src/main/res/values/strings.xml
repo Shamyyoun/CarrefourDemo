@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="google_maps_key">AIzaSyBWlu9L_eU296ouTr1XKWZGZQG-51pMwgo</string>
+    <string name="app_name">Carrefour Demo</string>
+    <string name="title_activity_signup">Sign up</string>
+    <string name="title_activity_offer">Offer</string>
+    <string name="title_activity_accepted_request">Accepted Request</string>
+    <string name="title_activity_request_offer">Request Offer</string>
+    <string name="invalid_inputs">Invalid inputs</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="unexpected_error_try_again">Unexpected error, try again</string>
+    <string name="invalid_username_or_password">Invalid username or password</string>
+    <string name="username_exists_try_another_one">Username exists, try another one</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="or_sign_up">or Sign up</string>
+    <string name="your_name">Your name</string>
+    <string name="sign_up">Sign up</string>
+    <string name="error_loading_data">Error loading data</string>
+    <string name="cant_get_location">Can\'t get location</string>
+    <string name="tap_to_refresh">tap to refresh</string>
+    <string name="gps_is_not_enabled">GPS is not enabled</string>
+    <string name="successful_request">Successful request</string>
+    <string name="hot_offers">Hot offers</string>
+    <string name="instant_offers">Instant offers</string>
+    <string name="home">Home</string>
+    <string name="about">About</string>
+    <string name="logout">Logout</string>
+    <string name="should_enable_gps">You should enable GPS to get best offers</string>
+    <string name="list_price">List Price</string>
+    <string name="discount">Discount</string>
+    <string name="savings">Savings</string>
+    <string name="views">Views</string>
+    <string name="add_offer">Add Offer</string>
+    <string name="added_successfully">Added Successfully</string>
+    <string name="price">Price</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

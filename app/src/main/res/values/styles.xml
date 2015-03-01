@@ -1,0 +1,15 @@
+<resources>
+    <!-- List header text style.-->
+    <style name="HeaderText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:padding">@dimen/text_header_padding</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
+    <!-- Circular progressbar style. -->
+    <style name="Progressbar" parent="@style/CircularProgressBar">
+        <item name="progress_color">@color/primary_dark</item>
+        <item name="progress_background_color">@color/progress_background</item>
+    </style>
+
+</resources>

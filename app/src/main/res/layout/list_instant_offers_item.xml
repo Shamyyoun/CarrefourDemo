@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/list_item_padding"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/dp2"
+            style="?android:attr/textAppearanceMedium"
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/list_item_padding"
+            android:text="Offer name"
+            android:textColor="@color/primary_text" />
+
+        <TextView
+            android:layout_marginTop="@dimen/dp2"
+            android:id="@+id/text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/list_item_padding"
+            android:text="Offer name"
+            android:textColor="@color/primary_text" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="@dimen/instant_offers_timer_dimen"
+        android:layout_height="@dimen/instant_offers_timer_dimen">
+
+        <com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:stroke_width="@dimen/instant_offers_timer_stroke"
+            android:layout_gravity="center"
+            android:id="@+id/holoCircularProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TableLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow android:gravity="center">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/text_remainHours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/text_remainMinutes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:id="@+id/text_remainSeconds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:textColor="@color/primary_text" />
+            </TableRow>
+
+            <TableRow android:gravity="center">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="H"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/primary_text" />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="S"
+                    android:textColor="@color/primary_text" />
+            </TableRow>
+        </TableLayout>
+
+    </FrameLayout>
+</LinearLayout>

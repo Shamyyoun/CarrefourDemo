@@ -1,0 +1,77 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/primary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/screen_vertical_margin"
+    android:paddingLeft="@dimen/screen_horizontal_margin"
+    android:paddingRight="@dimen/screen_horizontal_margin"
+    android:paddingTop="@dimen/screen_vertical_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_margin="@dimen/form_logo_margin"
+            android:id="@+id/image_logo"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/carrefour_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_logo_height" />
+
+        <EditText
+            android:textColor="@android:color/white"
+            android:id="@+id/text_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/username"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:singleLine="true" />
+
+        <EditText
+            android:textColor="@android:color/white"
+            android:id="@+id/text_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:singleLine="true" />
+
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/form_button_submit_margin">
+
+            <Button
+                android:background="@color/secondary_text"
+                android:textColor="@android:color/white"
+                android:id="@+id/button_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/login" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                android:indeterminate="false" />
+
+        </FrameLayout>
+    </LinearLayout>
+</FrameLayout>

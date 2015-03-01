@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.balysv.materialripple.MaterialRippleLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/shopping_cart_item_padding"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:mrl_rippleOverlay="true"
+    app:mrl_rippleDelayClick="false"
+    app:mrl_rippleHover="true">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginRight="@dimen/shopping_cart_item_padding"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_width="@dimen/shopping_cart_image_dimen"
+            android:layout_height="@dimen/shopping_cart_image_dimen"
+            android:id="@+id/image_thumbnail"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:gravity="center"
+                android:padding="@dimen/dp2"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/text_title" />
+
+            <TextView
+                android:padding="@dimen/dp2"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/text_price" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</com.balysv.materialripple.MaterialRippleLayout>

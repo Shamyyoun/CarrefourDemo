@@ -1,0 +1,40 @@
+<resources>
+    <dimen name="screen_horizontal_margin">16dp</dimen>
+    <dimen name="screen_vertical_margin">16dp</dimen>
+    <dimen name="text_description_min_height">80dp</dimen>
+    <dimen name="form_button_submit_margin">10dp</dimen>
+    <dimen name="error_image_dimen">80dp</dimen>
+    <dimen name="error_text_margin">15dp</dimen>
+    <dimen name="floating_button_margin">16dp</dimen>
+    <dimen name="scrollview_padding">4dp</dimen>
+    <dimen name="text_header_padding">10dp</dimen>
+    <dimen name="hot_offers_height">300dp</dimen>
+    <dimen name="menu_drawer_width">300dp</dimen>
+    <dimen name="actionbar_icon_padding">10dp</dimen>
+    <dimen name="actionbar_icon_dimen">55dp</dimen>
+    <dimen name="actionbar_logo_height">30dp</dimen>
+    <dimen name="hot_offers_item_width">300dp</dimen>
+    <dimen name="hot_offers_grad_height">80dp</dimen>
+    <dimen name="hot_offers_title_height">60dp</dimen>
+    <dimen name="ripple_view_margin">5dp</dimen>
+    <dimen name="hot_offers_fav_icon_dimen">50dp</dimen>
+    <dimen name="list_item_padding">15dp</dimen>
+    <dimen name="instant_offers_thumbnail_dimen">90dp</dimen>
+    <dimen name="menu_drawer_profile_pic_dimen">120dp</dimen>
+    <dimen name="menu_drawer_profile_pic_margin">20dp</dimen>
+    <dimen name="menu_drawer_item_padding">20dp</dimen>
+    <dimen name="viewpager_indicator_padding">10dp</dimen>
+    <dimen name="form_logo_margin">20dp</dimen>
+    <dimen name="grid_offers_item_height">170dp</dimen>
+    <dimen name="offer_title_header_margin">20dp</dimen>
+    <dimen name="offer_image_dimen">250dp</dimen>
+    <dimen name="button_padding">7dp</dimen>
+    <dimen name="button_icon_dimen">50dp</dimen>
+    <dimen name="shopping_cart_item_padding">8dp</dimen>
+    <dimen name="shopping_cart_image_dimen">90dp</dimen>
+    <dimen name="instant_offers_timer_dimen">90dp</dimen>
+    <dimen name="instant_offers_timer_stroke">3dp</dimen>
+
+    <dimen name="dp10">10dp</dimen>
+    <dimen name="dp2">2dp</dimen>
+</resources>

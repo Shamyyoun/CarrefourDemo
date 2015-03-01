@@ -1,0 +1,39 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/view_progress"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/view_progress"></include>
+
+    <include
+        android:id="@+id/view_error"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/view_error"></include>
+
+
+    <FrameLayout
+        android:id="@+id/view_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/swipeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="MergeRootFrame">
+
+            <GridView
+                android:id="@+id/grid_offers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="2"></GridView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </FrameLayout>
+
+</FrameLayout>

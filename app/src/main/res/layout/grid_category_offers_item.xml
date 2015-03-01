@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/grid_offers_item_height"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.balysv.materialripple.MaterialRippleLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/grid_offers_item_height"
+        app:mrl_rippleOverlay="true"
+        app:mrl_rippleDelayClick="false"
+        app:mrl_rippleInAdapter="true"
+        app:mrl_rippleHover="true">
+
+        <FrameLayout
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@drawable/product"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image_thumbnail"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:background="@drawable/gray_trans_grad"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/hot_offers_grad_height"
+                android:id="@+id/imageView2"
+                android:layout_gravity="bottom" />
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/hot_offers_title_height"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/text_title" />
+
+        </FrameLayout>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <com.balysv.materialripple.MaterialRippleLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="@dimen/hot_offers_fav_icon_dimen"
+        android:layout_height="@dimen/hot_offers_fav_icon_dimen"
+        app:mrl_rippleOverlay="true"
+        app:mrl_rippleDelayClick="false"
+        app:mrl_rippleHover="true">
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/button_addToCart"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_add_to_cart_gray" />
+    </com.balysv.materialripple.MaterialRippleLayout>
+</FrameLayout>
