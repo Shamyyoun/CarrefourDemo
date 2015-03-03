@@ -7,8 +7,8 @@ public class Constants {
     // json response constants
     public static final String JSON_NULL_MSG = "null";
     public static final String JSON_FALSE_MSG = "false";
-    public static final String JSON_SUCCESS_MSG = "success";
-    public static final String JSON_USERNAME_EXISTS_MSG = "username_exists";
+    public static final String JSON_USER_OFFER_ADDED = "1";
+    public static final String JSON_USER_OFFER_EXISTS = "-1";
 
     // sp constants
     public static final String SP_RESPONSES = "responses";

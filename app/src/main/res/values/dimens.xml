@@ -13,6 +13,7 @@
     <dimen name="actionbar_icon_padding">10dp</dimen>
     <dimen name="actionbar_icon_dimen">55dp</dimen>
     <dimen name="actionbar_logo_height">30dp</dimen>
+    <dimen name="actionbar_logo_padding">10dp</dimen>
     <dimen name="hot_offers_item_width">300dp</dimen>
     <dimen name="hot_offers_grad_height">80dp</dimen>
     <dimen name="hot_offers_title_height">60dp</dimen>

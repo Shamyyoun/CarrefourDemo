@@ -78,6 +78,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     menuDrawer.openDrawer(MENU_DRAWER_GRAVITY);
             }
         });
+        setActionBarLogoClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onHome();
+            }
+        });
 
         // set initial user info in menu drawer
         textName.setText(AppController.getInstance(getApplicationContext()).activeUser.getName());

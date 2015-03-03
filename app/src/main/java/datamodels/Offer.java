@@ -23,6 +23,7 @@ public class Offer implements Serializable {
     private Date updateDate;
     private Date expireDate;
     private String imageUrl;
+    private boolean inCart;
 
     public Offer(String id) {
         this.id = id;
@@ -112,6 +113,10 @@ public class Offer implements Serializable {
         return createDate;
     }
 
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
     public String getStrCreateDate() {
         return StringUtil.convertToString(createDate, DATE_FORMAT);
     }
@@ -121,12 +126,12 @@ public class Offer implements Serializable {
         return this;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
     public Date getUpdateDate() {
         return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public Offer setUpdateDate(String updateDate) {
@@ -134,12 +139,12 @@ public class Offer implements Serializable {
         return this;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
     public Date getExpireDate() {
         return expireDate;
+    }
+
+    public void setExpireDate(Date expireDate) {
+        this.expireDate = expireDate;
     }
 
     public String getStrExpireDate() {
@@ -151,10 +156,6 @@ public class Offer implements Serializable {
         return this;
     }
 
-    public void setExpireDate(Date expireDate) {
-        this.expireDate = expireDate;
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }
@@ -162,5 +163,13 @@ public class Offer implements Serializable {
     public Offer setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
+    }
+
+    public boolean isInCart() {
+        return inCart;
+    }
+
+    public void setInCart(boolean inCart) {
+        this.inCart = inCart;
     }
 }

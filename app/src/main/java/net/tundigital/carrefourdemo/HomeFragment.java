@@ -146,6 +146,9 @@ public class HomeFragment extends Fragment {
                         offerDAO.open();
                         offerDAO.delete(offer.getId());
                         offerDAO.close();
+
+                        // remove from listview
+                        instantOffersAdapter.remove(i);
                     }
                 }
 
@@ -198,7 +201,8 @@ public class HomeFragment extends Fragment {
      */
     private class HotOffersTask extends AsyncTask<Void, Void, Void> {
         private ProgressDialog progressDialog;
-        private String response;
+        private String hotOffersResponse;
+        private String userOffersResponse;
 
         private HotOffersTask() {
             progressDialog = new ProgressDialog(activity);
@@ -230,12 +234,16 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            // create json parser
-            String url = AppController.END_POINT + "/offers-listing";
-            JsonReader jsonReader = new JsonReader(url);
+            // load hot offers
+            String hotOffersUrl = AppController.END_POINT + "/offers-listing";
+            JsonReader hotOffersReader = new JsonReader(hotOffersUrl);
+            hotOffersResponse = hotOffersReader.sendPostRequest();
 
-            // execute request
-            response = jsonReader.sendPostRequest();
+            // load user offers
+            String userOffersUrl = AppController.END_POINT + "/user-offers/"
+                    + AppController.getInstance(activity.getApplicationContext()).activeUser.getId();
+            JsonReader userOffersReader = new JsonReader(userOffersUrl);
+            userOffersResponse = userOffersReader.sendPostRequest();
 
             return null;
         }
@@ -247,7 +255,7 @@ public class HomeFragment extends Fragment {
             progressDialog.dismiss();
 
             // validate response
-            if (response == null) {
+            if (hotOffersResponse == null) {
                 // show error
                 AppMsg appMsg = AppMsg.makeText(activity, R.string.unexpected_error_try_again, AppMsg.STYLE_ALERT);
                 appMsg.setParent(mainView);
@@ -258,11 +266,11 @@ public class HomeFragment extends Fragment {
 
             // --response is valid--
             // handle it
-            OffersHandler handler = new OffersHandler(response);
-            final Offer[] offers = handler.handle();
+            OffersHandler hotOffersHandler = new OffersHandler(hotOffersResponse);
+            final Offer[] hotOffers = hotOffersHandler.handle();
 
             // check handling operation result
-            if (offers == null) {
+            if (hotOffers == null) {
                 // show error
                 AppMsg appMsg = AppMsg.makeText(activity, R.string.unexpected_error_try_again, AppMsg.STYLE_ALERT);
                 appMsg.setParent(mainView);
@@ -271,13 +279,33 @@ public class HomeFragment extends Fragment {
                 return;
             }
 
+            // hot offers handled successfully >> parse and handle user offers
+            if (userOffersResponse != null) {
+                OffersHandler userOffersHandler = new OffersHandler(userOffersResponse);
+                final Offer[] userOffers = userOffersHandler.handle();
+                if (userOffers != null) {
+                    // fill inCart field in hot offers
+                    for (Offer hotOffer : hotOffers) {
+                        // check if exists in user offers
+                        boolean inCart = false;
+                        for (Offer userOffer : userOffers) {
+                            if (userOffer.getImageUrl().equals(hotOffer.getImageUrl())) {
+                                inCart = true;
+                                break;
+                            }
+                        }
+                        hotOffer.setInCart(inCart);
+                    }
+                }
+            }
+
             // display hot offers
-            HotOffersAdapter adapter = new HotOffersAdapter(activity.getApplicationContext(), R.layout.grid_hot_offers_item, offers);
+            HotOffersAdapter adapter = new HotOffersAdapter(activity.getApplicationContext(), R.layout.grid_hot_offers_item, hotOffers);
             gridHotOffers.setAdapter(adapter);
             gridHotOffers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    OfferDetailsActivity.launch(activity, view.findViewById(R.id.image_thumbnail), offers[position]);
+                    OfferDetailsActivity.launch(activity, view.findViewById(R.id.image_thumbnail), hotOffers[position]);
                 }
             });
         }

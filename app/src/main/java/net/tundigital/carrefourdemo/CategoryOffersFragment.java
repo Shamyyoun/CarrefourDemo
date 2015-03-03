@@ -93,7 +93,8 @@ public class CategoryOffersFragment extends SwipeProgressFragment {
      * sub class used to load category offers
      */
     private class CategoryOffersTask extends AsyncTask<Void, Void, Void> {
-        private String response;
+        private String categoryOffersResponse;
+        private String userOffersResponse;
 
         private CategoryOffersTask() {
             // save reference to this task, to destroy it if required
@@ -118,12 +119,16 @@ public class CategoryOffersFragment extends SwipeProgressFragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            // create json parser
-            String url = AppController.END_POINT + "/offers-listing/" + categoryId;
-            JsonReader jsonReader = new JsonReader(url);
+            // load hot offers
+            String hotOffersUrl = AppController.END_POINT + "/offers-listing/" + categoryId;
+            JsonReader hotOffersReader = new JsonReader(hotOffersUrl);
+            categoryOffersResponse = hotOffersReader.sendPostRequest();
 
-            // execute request
-            response = jsonReader.sendPostRequest();
+            // load user offers
+            String userOffersUrl = AppController.END_POINT + "/user-offers/"
+                    + AppController.getInstance(activity.getApplicationContext()).activeUser.getId();
+            JsonReader userOffersReader = new JsonReader(userOffersUrl);
+            userOffersResponse = userOffersReader.sendPostRequest();
 
             return null;
         }
@@ -133,7 +138,7 @@ public class CategoryOffersFragment extends SwipeProgressFragment {
             super.onPostExecute(aVoid);
 
             // validate response
-            if (response == null) {
+            if (categoryOffersResponse == null) {
                 // show error msg
                 showError(R.string.unexpected_error_try_again);
 
@@ -142,24 +147,44 @@ public class CategoryOffersFragment extends SwipeProgressFragment {
 
             // ---response is valid---
             // handle it in offers array
-            OffersHandler offersHandler = new OffersHandler(response);
-            final Offer[] offers = offersHandler.handle();
+            OffersHandler offersHandler = new OffersHandler(categoryOffersResponse);
+            final Offer[] categoryOffers = offersHandler.handle();
 
             // check handling operation result
-            if (offers == null) {
+            if (categoryOffers == null) {
                 // show error msg
                 showError(R.string.unexpected_error_try_again);
 
                 return;
             }
 
-            // update offers grid adapter
-            CategoryOffersAdapter adapter = new CategoryOffersAdapter(activity.getApplicationContext(), R.layout.grid_category_offers_item, offers);
+            // category offers handled successfully >> parse and handle user offers
+            if (userOffersResponse != null) {
+                OffersHandler userOffersHandler = new OffersHandler(userOffersResponse);
+                final Offer[] userOffers = userOffersHandler.handle();
+                if (userOffers != null) {
+                    // fill inCart field in hot offers
+                    for (Offer categoryOffer : categoryOffers) {
+                        // check if exists in user offers
+                        boolean inCart = false;
+                        for (Offer userOffer : userOffers) {
+                            if (userOffer.getImageUrl().equals(categoryOffer.getImageUrl())) {
+                                inCart = true;
+                                break;
+                            }
+                        }
+                        categoryOffer.setInCart(inCart);
+                    }
+                }
+            }
+
+            // update category offers grid adapter
+            CategoryOffersAdapter adapter = new CategoryOffersAdapter(activity.getApplicationContext(), R.layout.grid_category_offers_item, categoryOffers);
             gridOffers.setAdapter(adapter);
             gridOffers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    OfferDetailsActivity.launch(activity, view.findViewById(R.id.image_thumbnail), offers[position]);
+                    OfferDetailsActivity.launch(activity, view.findViewById(R.id.image_thumbnail), categoryOffers[position]);
                 }
             });
 

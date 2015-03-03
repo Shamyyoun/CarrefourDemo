@@ -21,7 +21,7 @@ import utils.FontUtil;
 public class AppController extends Application {
     public static final String END_POINT = "http://apps.turndigital.net/carrefour";
     public static final String PROJECT_NUMBER = "834640672125";
-    public static final long LOCATION_UPDATER_DELAY = 60 * 60 * 1000; // time in milli seconds
+    public static final long LOCATION_UPDATER_DELAY = 1000; // time in milli seconds
     public static final int MAX_LOCATION_UPDATER_TRIES = 5;
 
     public User activeUser;
@@ -97,27 +97,20 @@ public class AppController extends Application {
      * method, used to send view action to server
      */
     public static void sendViewAction(Context context, String offerId) {
-        sendBehaviour(context, offerId, Constants.BEHAVIOUR_VIEW);
-    }
-
-    /**
-     * method, used to send add action to server
-     */
-    public static void sendAddAction(Context context, String offerId) {
-        sendBehaviour(context, offerId, Constants.BEHAVIOUR_ADD);
-    }
-
-    /**
-     * method, used to send behaviour action to server
-     */
-    private static void sendBehaviour(Context context, String offerId, String behaviourId) {
+        // prepare url
         String url = AppController.END_POINT + "/add-action";
+
+        // create json reader
         JsonReader jsonReader = new JsonReader(url);
-        List<NameValuePair> paramaters = new ArrayList<>();
-        paramaters.add(new BasicNameValuePair("user_id", getInstance(context).activeUser.getId()));
-        paramaters.add(new BasicNameValuePair("offer_id", offerId));
-        paramaters.add(new BasicNameValuePair("behavior_id", behaviourId));
-        jsonReader.sendAsyncPostRequest(paramaters);
+
+        // prepare parameters
+        List<NameValuePair> parameters = new ArrayList<>();
+        parameters.add(new BasicNameValuePair("user_id", getInstance(context).activeUser.getId()));
+        parameters.add(new BasicNameValuePair("offer_id", offerId));
+        parameters.add(new BasicNameValuePair("behavior_id", Constants.BEHAVIOUR_VIEW));
+
+        // execute request
+        jsonReader.sendAsyncPostRequest(parameters);
     }
 
     @Override

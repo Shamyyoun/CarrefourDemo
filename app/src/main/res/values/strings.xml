@@ -36,8 +36,9 @@
     <string name="add_offer">Add Offer</string>
     <string name="added_successfully">Added Successfully</string>
     <string name="price">Price</string>
+    <string name="item_already_added">Item already added</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -79,6 +79,11 @@ public class InstantOffersAdapter extends ArrayAdapter<Offer> {
         notifyDataSetChanged();
     }
 
+    public void remove(int position) {
+        data.remove(position);
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder {
         TextView textTitle;
         TextView textDesc;
