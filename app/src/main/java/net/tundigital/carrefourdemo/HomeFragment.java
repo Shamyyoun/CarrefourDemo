@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.devspark.appmsg.AppMsg;
@@ -23,7 +24,7 @@ import adapters.HotOffersAdapter;
 import adapters.InstantOffersAdapter;
 import database.OfferDAO;
 import datamodels.Offer;
-import json.JsonParser;
+import json.JsonReader;
 import json.OffersHandler;
 import utils.InternetUtil;
 import views.ExpandableHeightGridView;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
 
     // main view objects
     private MainActivity activity;
+    private FrameLayout mainView;
 
     // hot offer objects
     private ExpandableHeightGridView gridHotOffers;
@@ -73,6 +75,7 @@ public class HomeFragment extends Fragment {
      */
     private void initComponents(final View rootView, Bundle savedInstanceState) {
         activity = (MainActivity) getActivity();
+        mainView = (FrameLayout) rootView.findViewById(R.id.view_main);
 
         listInstantOffers = (ExpandableHeightListView) rootView.findViewById(R.id.list_instantOffers);
         gridHotOffers = (ExpandableHeightGridView) rootView.findViewById(R.id.grid_hotOffers);
@@ -158,8 +161,7 @@ public class HomeFragment extends Fragment {
      * public method, used to add offer to instant offers when arrived from push notifications
      */
     public void addInstantOffer(Offer offer) {
-        instantOffers.add(0, offer);
-        instantOffersAdapter.notifyDataSetChanged();
+        instantOffersAdapter.add(offer);
 
         // check to start timer if required
         if (!timerRunning)
@@ -214,7 +216,9 @@ public class HomeFragment extends Fragment {
             // check internet connection
             if (!InternetUtil.isConnected(activity)) {
                 // show error
-                AppMsg.makeText(activity, R.string.no_internet_connection, AppMsg.STYLE_ALERT).show();
+                AppMsg appMsg = AppMsg.makeText(activity, R.string.no_internet_connection, AppMsg.STYLE_ALERT);
+                appMsg.setParent(mainView);
+                appMsg.show();
 
                 cancel(true);
                 return;
@@ -228,10 +232,10 @@ public class HomeFragment extends Fragment {
         protected Void doInBackground(Void... params) {
             // create json parser
             String url = AppController.END_POINT + "/offers-listing";
-            JsonParser jsonParser = new JsonParser(url);
+            JsonReader jsonReader = new JsonReader(url);
 
             // execute request
-            response = jsonParser.sendPostRequest();
+            response = jsonReader.sendPostRequest();
 
             return null;
         }
@@ -245,7 +249,9 @@ public class HomeFragment extends Fragment {
             // validate response
             if (response == null) {
                 // show error
-                AppMsg.makeText(activity, R.string.unexpected_error_try_again, AppMsg.STYLE_ALERT).show();
+                AppMsg appMsg = AppMsg.makeText(activity, R.string.unexpected_error_try_again, AppMsg.STYLE_ALERT);
+                appMsg.setParent(mainView);
+                appMsg.show();
 
                 return;
             }
@@ -258,7 +264,9 @@ public class HomeFragment extends Fragment {
             // check handling operation result
             if (offers == null) {
                 // show error
-                AppMsg.makeText(activity, R.string.unexpected_error_try_again, AppMsg.STYLE_ALERT).show();
+                AppMsg appMsg = AppMsg.makeText(activity, R.string.unexpected_error_try_again, AppMsg.STYLE_ALERT);
+                appMsg.setParent(mainView);
+                appMsg.show();
 
                 return;
             }

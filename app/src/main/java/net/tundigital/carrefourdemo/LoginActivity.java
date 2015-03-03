@@ -24,7 +24,7 @@ import java.util.List;
 
 import datamodels.Constants;
 import datamodels.User;
-import json.JsonParser;
+import json.JsonReader;
 import json.UserHandler;
 import receivers.LocationUpdaterReceiver;
 import utils.InternetUtil;
@@ -177,7 +177,7 @@ public class LoginActivity extends ActionBarActivity {
         protected Void doInBackground(Void... params) {
             // create json parser
             String url = AppController.END_POINT + "/user-login";
-            JsonParser jsonParser = new JsonParser(url);
+            JsonReader jsonReader = new JsonReader(url);
 
             // parameters
             List<NameValuePair> parameters = new ArrayList<>(2);
@@ -185,7 +185,7 @@ public class LoginActivity extends ActionBarActivity {
             parameters.add(new BasicNameValuePair("pwd", password));
 
             // execute request
-            response = jsonParser.sendPostRequest(parameters);
+            response = jsonReader.sendPostRequest(parameters);
 
             return null;
         }
@@ -290,7 +290,7 @@ public class LoginActivity extends ActionBarActivity {
 
                 // create json parser
                 String url = AppController.END_POINT + "/update-gen";
-                JsonParser jsonParser = new JsonParser(url);
+                JsonReader jsonReader = new JsonReader(url);
 
                 // parameters
                 List<NameValuePair> paramaters = new ArrayList<>(2);
@@ -298,7 +298,7 @@ public class LoginActivity extends ActionBarActivity {
                 paramaters.add(new BasicNameValuePair("reg_id", regId));
 
                 // execute request
-                jsonParser.sendPostRequest(paramaters);
+                jsonReader.sendPostRequest(paramaters);
             } catch (IOException e) {
                 e.printStackTrace();
             }

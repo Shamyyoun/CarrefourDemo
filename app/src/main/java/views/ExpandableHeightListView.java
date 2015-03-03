@@ -16,13 +16,16 @@ public class ExpandableHeightListView extends ListView {
         super(context, attrs);
     }
 
-    public ExpandableHeightListView(Context context, AttributeSet attrs,
-                                    int defStyle) {
+    public ExpandableHeightListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
     public boolean isExpanded() {
         return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 
     @Override
@@ -41,9 +44,5 @@ public class ExpandableHeightListView extends ListView {
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         }
-    }
-
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
     }
 }

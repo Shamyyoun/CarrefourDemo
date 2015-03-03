@@ -90,10 +90,13 @@
     <orderEntry type="library" exported="" name="material-ripple-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="android-ui-1.2" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="android-observablescrollview-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-3.1.59" level="project" />
     <orderEntry type="library" exported="" name="floatingactionbutton-1.2.0" level="project" />
+    <orderEntry type="library" exported="" name="cardview-v7-21.0.3" level="project" />
     <orderEntry type="module" module-name="holo_circular_progressbar" exported="" />
     <orderEntry type="module" module-name="app_msg" exported="" />
   </component>

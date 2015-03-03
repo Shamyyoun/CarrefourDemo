@@ -1,6 +1,5 @@
 package net.tundigital.carrefourdemo;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.devspark.appmsg.AppMsg;
 
@@ -17,7 +15,7 @@ import java.util.ArrayList;
 import adapters.CategoryOffersAdapter;
 import datamodels.Constants;
 import datamodels.Offer;
-import json.JsonParser;
+import json.JsonReader;
 import json.OffersHandler;
 import utils.InternetUtil;
 import views.SwipeProgressFragment;
@@ -122,10 +120,10 @@ public class CategoryOffersFragment extends SwipeProgressFragment {
         protected Void doInBackground(Void... params) {
             // create json parser
             String url = AppController.END_POINT + "/offers-listing/" + categoryId;
-            JsonParser jsonParser = new JsonParser(url);
+            JsonReader jsonReader = new JsonReader(url);
 
             // execute request
-            response = jsonParser.sendPostRequest();
+            response = jsonReader.sendPostRequest();
 
             return null;
         }

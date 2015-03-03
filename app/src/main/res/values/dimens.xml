@@ -34,6 +34,9 @@
     <dimen name="shopping_cart_image_dimen">90dp</dimen>
     <dimen name="instant_offers_timer_dimen">90dp</dimen>
     <dimen name="instant_offers_timer_stroke">3dp</dimen>
+    <dimen name="instant_offers_card_radius">8dp</dimen>
+    <dimen name="instant_offers_card_elevation">5dp</dimen>
+    <dimen name="instant_offers_card_margin_bottom">7dp</dimen>
 
     <dimen name="dp10">10dp</dimen>
     <dimen name="dp2">2dp</dimen>

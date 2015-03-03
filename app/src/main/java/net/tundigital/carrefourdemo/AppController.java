@@ -12,7 +12,7 @@ import java.util.List;
 
 import datamodels.Constants;
 import datamodels.User;
-import json.JsonParser;
+import json.JsonReader;
 import utils.FontUtil;
 
 /**
@@ -21,7 +21,7 @@ import utils.FontUtil;
 public class AppController extends Application {
     public static final String END_POINT = "http://apps.turndigital.net/carrefour";
     public static final String PROJECT_NUMBER = "834640672125";
-    public static final long LOCATION_UPDATER_DELAY = 1 * 1000; // time in milli seconds
+    public static final long LOCATION_UPDATER_DELAY = 60 * 60 * 1000; // time in milli seconds
     public static final int MAX_LOCATION_UPDATER_TRIES = 5;
 
     public User activeUser;
@@ -29,13 +29,6 @@ public class AppController extends Application {
 
     public AppController() {
         super();
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        // override default monospace font
-        FontUtil.setDefaultFont(this, "MONOSPACE", "roboto.ttf");
     }
 
     /**
@@ -119,11 +112,18 @@ public class AppController extends Application {
      */
     private static void sendBehaviour(Context context, String offerId, String behaviourId) {
         String url = AppController.END_POINT + "/add-action";
-        JsonParser jsonParser = new JsonParser(url);
+        JsonReader jsonReader = new JsonReader(url);
         List<NameValuePair> paramaters = new ArrayList<>();
         paramaters.add(new BasicNameValuePair("user_id", getInstance(context).activeUser.getId()));
         paramaters.add(new BasicNameValuePair("offer_id", offerId));
         paramaters.add(new BasicNameValuePair("behavior_id", behaviourId));
-        jsonParser.sendAsyncPostRequest(paramaters);
+        jsonReader.sendAsyncPostRequest(paramaters);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // override default monospace font
+        FontUtil.setDefaultFont(this, "MONOSPACE", "roboto.ttf");
     }
 }

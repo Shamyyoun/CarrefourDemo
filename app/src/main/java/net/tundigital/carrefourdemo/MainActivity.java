@@ -1,6 +1,7 @@
 package net.tundigital.carrefourdemo;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -21,13 +22,14 @@ import adapters.CategoriesAdapter;
 import datamodels.Category;
 import datamodels.Constants;
 import json.CategoriesHandler;
-import json.JsonParser;
+import json.JsonReader;
 import views.BaseActivity;
 import views.ExpandableHeightListView;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     public static final int MENU_DRAWER_GRAVITY = Gravity.START;
+    public static final int REVEAL_DURATION = 340;
 
     private DrawerLayout menuDrawer;
     private ImageView imageProfile;
@@ -40,6 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FloatingActionButton fabShoppingCart;
 
     private ArrayList<AsyncTask> runningTasks; // used to hold running tasks
+    private boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +160,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         startActivity(intent);
     }
 
+    private Point getLocationInView(View src, View target) {
+        final int[] l1 = new int[2];
+        src.getLocationOnScreen(l1);
+
+        final int[] l2 = new int[2];
+        target.getLocationOnScreen(l2);
+
+        l2[0] = l2[0] - l1[0] + target.getWidth() / 2;
+        l2[1] = l2[1] - l1[1] + target.getHeight() / 2;
+
+        return new Point(l2[0], l2[1]);
+    }
+
     /*
      * overriden method
      */
@@ -190,10 +206,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         protected Void doInBackground(Void... params) {
             // create json parser
             String url = AppController.END_POINT + "/categories-listing";
-            JsonParser jsonParser = new JsonParser(url);
+            JsonReader jsonReader = new JsonReader(url);
 
             // execute request
-            response = jsonParser.sendPostRequest();
+            response = jsonReader.sendPostRequest();
 
             return null;
         }

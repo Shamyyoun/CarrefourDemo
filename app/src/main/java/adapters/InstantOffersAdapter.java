@@ -71,15 +71,12 @@ public class InstantOffersAdapter extends ArrayAdapter<Offer> {
         float progress = ((float) (currentTime - createTime) / (expireTime - createTime));
         holder.progressBar.setProgress(progress);
 
-//        // check values
-//        if (currentTime >= expireTime) {
-//            // delete this offer
-//            offerDAO.open();
-//            offerDAO.delete(offer.getId());
-//            offerDAO.close();
-//        }
-
         return row;
+    }
+
+    public void add(Offer offer) {
+        data.add(0, offer);
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder {

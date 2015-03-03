@@ -17,7 +17,7 @@ import net.tundigital.carrefourdemo.R;
 
 import datamodels.Constants;
 import datamodels.User;
-import json.JsonParser;
+import json.JsonReader;
 import json.UserHandler;
 import utils.InternetUtil;
 
@@ -114,10 +114,10 @@ public class LocationUpdaterReceiver extends BroadcastReceiver {
         protected Void doInBackground(Void... params) {
             // create json parser
             String url = AppController.END_POINT + "/user-update/" + user.getId() + "/lat,lon/" + latitude + "," + longitude;
-            JsonParser jsonParser = new JsonParser(url);
+            JsonReader jsonReader = new JsonReader(url);
 
             // execute request
-            response = jsonParser.sendGetRequest();
+            response = jsonReader.sendGetRequest();
 
             return null;
         }

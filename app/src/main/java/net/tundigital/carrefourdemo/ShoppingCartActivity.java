@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import adapters.ShoppingCartAdapter;
 import datamodels.Offer;
-import json.JsonParser;
+import json.JsonReader;
 import json.OffersHandler;
 import utils.InternetUtil;
 import views.SwipeProgressActivity;
@@ -130,10 +130,10 @@ public class ShoppingCartActivity extends SwipeProgressActivity {
             // create json parser
             String url = AppController.END_POINT + "/user-offers/"
                     + AppController.getInstance(getApplicationContext()).activeUser.getId();
-            JsonParser jsonParser = new JsonParser(url);
+            JsonReader jsonReader = new JsonReader(url);
 
             // execute request
-            response = jsonParser.sendPostRequest();
+            response = jsonReader.sendPostRequest();
 
             return null;
         }
