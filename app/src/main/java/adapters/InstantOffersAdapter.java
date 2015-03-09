@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.pascalwelsch.holocircularprogressbar.HoloCircularProgressBar;
 
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.R;
 
 import java.util.Calendar;
 import java.util.List;

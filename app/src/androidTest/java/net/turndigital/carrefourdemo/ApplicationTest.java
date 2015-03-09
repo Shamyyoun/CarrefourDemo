@@ -1,4 +1,4 @@
-package net.tundigital.carrefourdemo;
+package net.turndigital.carrefourdemo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

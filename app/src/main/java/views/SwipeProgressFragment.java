@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.devspark.appmsg.AppMsg;
 
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.R;
 
 import utils.ViewUtil;
 

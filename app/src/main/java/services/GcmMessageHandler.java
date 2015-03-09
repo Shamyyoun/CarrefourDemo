@@ -11,9 +11,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 
-import net.tundigital.carrefourdemo.AppController;
-import net.tundigital.carrefourdemo.MainActivity;
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.AppController;
+import net.turndigital.carrefourdemo.MainActivity;
+import net.turndigital.carrefourdemo.R;
 
 import java.util.Calendar;
 import java.util.Locale;

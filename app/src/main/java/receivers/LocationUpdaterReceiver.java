@@ -11,9 +11,9 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.provider.Settings;
 
-import net.tundigital.carrefourdemo.AppController;
-import net.tundigital.carrefourdemo.GPSTracker;
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.AppController;
+import net.turndigital.carrefourdemo.GPSTracker;
+import net.turndigital.carrefourdemo.R;
 
 import datamodels.Constants;
 import datamodels.User;
@@ -26,55 +26,63 @@ public class LocationUpdaterReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        user = (User) intent.getSerializableExtra(Constants.KEY_ACTIVE_USER);
-
         // check if internet is enabled
         if (InternetUtil.isConnected(context)) {
-            // check if user is null
-            if (user == null) {
-                // get cached user
+            // get active user
+            try {
+                user = AppController.getInstance(context).activeUser;
+            } catch (Exception e) {
                 String response = AppController.getActiveUserResponse(context);
                 UserHandler userHandler = new UserHandler(response);
                 user = userHandler.handle();
+            } finally {
+                if (user == null) {
+                    // try get cached user
+                    String response = AppController.getActiveUserResponse(context);
+                    UserHandler userHandler = new UserHandler(response);
+                    user = userHandler.handle();
+                }
             }
 
-            GPSTracker gpsTracker = new GPSTracker(context);
-            // check if gps is enabled
-            if (gpsTracker.isGPSEnabled()) {
-                // get current location from GPS
-                Location location = gpsTracker.getLocation();
+            // check to ensure that user is not null
+            if (user != null) {
+                GPSTracker gpsTracker = new GPSTracker(context);
+                // check if gps is enabled
+                if (gpsTracker.isGPSEnabled()) {
+                    // get current location from GPS
+                    Location location = gpsTracker.getLocation();
 
-                // update location
-                new UpdateLocationTask(location, AppController.MAX_LOCATION_UPDATER_TRIES).execute();
-            } else {
-                // not enabled
-                // show notification
-                NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                    // update location
+                    new UpdateLocationTask(location, AppController.MAX_LOCATION_UPDATER_TRIES).execute();
+                } else {
+                    // not enabled
+                    // show notification
+                    NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-                int icon = R.drawable.ic_launcher;
-                long when = System.currentTimeMillis();
-                String title = context.getString(R.string.app_name);
-                String content = context.getString(R.string.should_enable_gps);
+                    int icon = R.drawable.ic_launcher;
+                    long when = System.currentTimeMillis();
+                    String title = context.getString(R.string.app_name);
+                    String content = context.getString(R.string.should_enable_gps);
 
-                Intent notificationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                PendingIntent contentIntent = PendingIntent.getActivity(context, Constants.NOTIFICATION_OPEN_GPS, notificationIntent, 0);
-                Notification notification = new Notification(icon, title, when);
-                notification.setLatestEventInfo(context, title, content, contentIntent);
-                notification.flags |= Notification.FLAG_AUTO_CANCEL;
+                    Intent notificationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    PendingIntent contentIntent = PendingIntent.getActivity(context, Constants.NOTIFICATION_OPEN_GPS, notificationIntent, 0);
+                    Notification notification = new Notification(icon, title, when);
+                    notification.setLatestEventInfo(context, title, content, contentIntent);
+                    notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-                mNotificationManager.notify(Constants.NOTIFICATION_OPEN_GPS, notification);
+                    mNotificationManager.notify(Constants.NOTIFICATION_OPEN_GPS, notification);
+                }
+
+                // --start alarm manager to update location after static time--
+                Intent mIntent = new Intent(context, LocationUpdaterReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
+                        Constants.RECEIVER_LOCATION_UPDATER, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                alarmManager.set(AlarmManager.RTC_WAKEUP,
+                        System.currentTimeMillis() + AppController.LOCATION_UPDATER_DELAY,
+                        pendingIntent);
             }
-
-            // --start alarm manager to update location after static time--
-            Intent mIntent = new Intent(context, LocationUpdaterReceiver.class);
-            mIntent.putExtra(Constants.KEY_ACTIVE_USER, user);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-                    Constants.RECEIVER_LOCATION_UPDATER, mIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + AppController.LOCATION_UPDATER_DELAY,
-                    pendingIntent);
         }
     }
 
@@ -117,7 +125,7 @@ public class LocationUpdaterReceiver extends BroadcastReceiver {
             JsonReader jsonReader = new JsonReader(url);
 
             // execute request
-            response = jsonReader.sendGetRequest();
+            response = jsonReader.sendPostRequest();
 
             return null;
         }

@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.AppController;
+import net.turndigital.carrefourdemo.R;
 
 import datamodels.Offer;
 
@@ -39,7 +40,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
             Picasso.with(context).load(offer.getImageUrl()).error(R.drawable.product).into(holder.imageThumbnail);
 
         holder.textTitle.setText(offer.getName());
-        holder.textPrice.setText("$" + strPrice);
+        holder.textPrice.setText(strPrice + " " + AppController.CURRENCY);
     }
 
     @Override
@@ -55,6 +56,15 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
+    }
+
+    public void setOnItemClickListener(
+            final OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -77,15 +87,6 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                 onItemClickListener.onItemClick(v, getPosition());
             }
         }
-    }
-
-    public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
-    }
-
-    public void setOnItemClickListener(
-            final OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
     }
 
 }

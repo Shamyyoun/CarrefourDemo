@@ -20,7 +20,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "net.tundigital.carrefourdemo"
+        applicationId "net.turndigital.carrefourdemo"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

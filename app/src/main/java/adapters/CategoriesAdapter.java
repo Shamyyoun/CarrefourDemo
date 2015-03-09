@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.R;
 
 import datamodels.Category;
 

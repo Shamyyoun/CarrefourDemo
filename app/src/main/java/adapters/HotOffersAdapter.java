@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import net.tundigital.carrefourdemo.AppController;
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.AppController;
+import net.turndigital.carrefourdemo.R;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -154,13 +154,13 @@ public class HotOffersAdapter extends BaseAdapter {
                 // show failure msg
                 Toast.makeText(context, R.string.item_already_added, Toast.LENGTH_LONG).show();
             } else if (response.equals(Constants.JSON_USER_OFFER_ADDED)) {
-                // change state
-                offer.setInCart(true);
-                buttonAddToCart.setImageResource(R.drawable.ic_add_to_cart_blue);
-
                 // show success msg
                 Toast.makeText(context, R.string.added_successfully, Toast.LENGTH_LONG).show();
             }
+
+            // change state
+            offer.setInCart(true);
+            buttonAddToCart.setImageResource(R.drawable.ic_add_to_cart_blue);
         }
     }
 }

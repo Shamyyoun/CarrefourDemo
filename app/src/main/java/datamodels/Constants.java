@@ -24,7 +24,6 @@ public class Constants {
     public static final int NOTIFICATION_OPEN_GPS = 1;
 
     // keys
-    public static final String KEY_ACTIVE_USER = "active_user";
     public static final String KEY_OFFER = "offer";
     public static final String KEY_REQUEST = "request";
     public static final String KEY_SHOW_BACK = "show_back";
@@ -34,7 +33,7 @@ public class Constants {
     public static final String PUSHN_KEY_NEW_OFFER = "new_offer";
     public static final String PUSHN_KEY_REQUEST_ACCEPTED = "request_accepted";
 
-    // activity request codes
+    // activity request and result codes
     public static final int CODE_REQUEST_OFFER = 1;
 
     // transition views names

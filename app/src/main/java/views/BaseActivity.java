@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import net.tundigital.carrefourdemo.R;
+import net.turndigital.carrefourdemo.R;
 
 public abstract class BaseActivity extends ActionBarActivity {
     private ImageButton buttonIcon;
