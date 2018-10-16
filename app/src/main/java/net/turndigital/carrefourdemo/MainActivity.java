@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         textLogout = (TextView) findViewById(R.id.text_logout);
 
         fabShoppingCart = (FloatingActionButton) findViewById(R.id.fab_shoppingCart);
-
+        ;
         runningTasks = new ArrayList<>();
 
         // customize menu drawer
